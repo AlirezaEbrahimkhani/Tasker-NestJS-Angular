@@ -1,13 +1,26 @@
+// angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// app
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
+import { ToastNotificationsModule } from './shared';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule, HttpClientModule],
+  declarations: [AppComponent],
+  imports: [
+    // angular
+    BrowserModule,
+    BrowserAnimationsModule,
+
+    // app
+    CoreModule,
+
+    // shared
+    ToastNotificationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
