@@ -3,9 +3,9 @@ import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { AuthRepository } from './auth/auth.repository';
 import { AuthService } from './auth/auth.service';
-
+import { DatabaseModule } from './database/database.module';
 @Module({
-  imports: [AuthModule],
+  imports: [DatabaseModule, AuthModule],
   controllers: [AuthController],
   providers: [AuthService, AuthRepository],
 })
