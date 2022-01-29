@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // app
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
 import { CoreModule } from './core/core.module';
 import { ToastNotificationsModule } from './shared';
 
@@ -20,6 +21,7 @@ import { ToastNotificationsModule } from './shared';
 
     // shared
     ToastNotificationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
