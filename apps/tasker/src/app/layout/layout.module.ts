@@ -15,25 +15,25 @@ const ROUTES: Routes = [
         pathMatch: 'full',
         redirectTo: 'home',
       },
-    //   {
-    //     path: 'home',
-    //     component: HomeComponent,
-    //   },
-    //   {
-    //     path: 'products',
-    //     loadChildren: () =>
-    //       import('../products/products.module').then((m) => m.ProductsModule),
-    //   },
-    //   {
-    //     path: 'auth',
-    //     loadChildren: () =>
-    //       import('../auth/auth.module').then((m) => m.AuthModule),
-    //   },
-    //   {
-    //     path: 'cart',
-    //     loadChildren: () =>
-    //       import('../cart/cart.module').then((m) => m.CartModule),
-    //   },
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'task',
+        loadChildren: () =>
+          import('../task/task.module').then((m) => m.TaskModule),
+      },
+      //   {
+      //     path: 'auth',
+      //     loadChildren: () =>
+      //       import('../auth/auth.module').then((m) => m.AuthModule),
+      //   },
+      //   {
+      //     path: 'cart',
+      //     loadChildren: () =>
+      //       import('../cart/cart.module').then((m) => m.CartModule),
+      //   },
     ],
   },
 ];
