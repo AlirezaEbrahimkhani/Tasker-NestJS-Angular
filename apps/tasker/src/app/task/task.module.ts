@@ -7,17 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
-import {MatTableModule} from '@angular/material/table';
-import {MatIconModule} from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 import { TaskRoutingModule } from './task.routing';
 import { TaskRoutingComponent } from './task.component';
 import { InsertTaskComponent } from './components/insert-task/insert-task.component';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
-
-
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const Material_Module: any[] = [
   MatTabsModule,
@@ -29,15 +27,12 @@ const Material_Module: any[] = [
   MatNativeDateModule,
   MatSelectModule,
   MatTableModule,
-  MatIconModule
+  MatIconModule,
+  MatTooltipModule,
 ];
 
 @NgModule({
-  declarations: [
-    TaskRoutingComponent,
-    InsertTaskComponent,
-    TasksListComponent,
-  ],
+  declarations: [TaskRoutingComponent, InsertTaskComponent, TasksListComponent],
   imports: [
     CommonModule,
     TaskRoutingModule,
@@ -45,5 +40,6 @@ const Material_Module: any[] = [
     FormsModule,
     ReactiveFormsModule,
   ],
+  exports: [Material_Module],
 })
 export class TaskModule {}
