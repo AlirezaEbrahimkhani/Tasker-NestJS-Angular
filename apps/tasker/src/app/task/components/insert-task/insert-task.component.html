@@ -1,0 +1,75 @@
+<div class="main-box">
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input required formControlName="title" matInput type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Due Date</mat-label>
+      <input formControlName="due_date" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select [formControl]="statuses">
+        <mat-option *ngFor="let status of statusList" [value]="status.code">{{
+          status.label
+        }}</mat-option>
+      </mat-select>
+      <!-- <mat-label>Grade Level</mat-label>
+        <mat-select formControlName="classID">
+          <mat-option
+            *ngFor="let gl of st.getGradeLevelList | async"
+            [value]="gl.gid"
+          >
+            {{ gl.name }}
+          </mat-option>
+        </mat-select> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select [formControl]="priorities">
+        <mat-option
+          *ngFor="let priority of priorityList"
+          [value]="priority.code"
+          >{{ priority.label }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Entity</mat-label>
+      <mat-select [formControl]="entities">
+        <mat-option *ngFor="let entity of entityList" [value]="entity.code">{{
+          entity.label
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Assignees</mat-label>
+      <mat-select [formControl]="assignees" multiple required>
+        <mat-option
+          *ngFor="let assignee of assigneesList"
+          [value]="assignee.code"
+          >{{ assignee.label }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Desciption</mat-label>
+      <textarea formControlName="desciption" matInput></textarea>
+    </mat-form-field>
+  </form>
+  <div class="button-section">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onInsert()"
+      [disabled]="form.invalid"
+    >
+      insert
+    </button>
+    <button mat-button color="warn" (click)="changeTab.emit(0)">Cancel</button>
+  </div>
+</div>
