@@ -1,20 +1,29 @@
-<div class="navbar">
+<!-- <div class="navbar">
     <div class="navbar-items">
       <span routerLink="/">Home</span>
       <span routerLink="/task/insert-task">insert-task</span>
       <span routerLink="/task/tasks-list">tasks-list</span>
     </div>
-    <div class="user-info">
-      <!-- <span routerLink="/cart/main">Cart</span> -->
-      <!-- <span *ngIf="userService.getLoggedIn | async; else notLoggedIn">{{
+    <div class="user-info"> -->
+<!-- <span routerLink="/cart/main">Cart</span> -->
+<!-- <span *ngIf="userService.getLoggedIn | async; else notLoggedIn">{{
         (userService.getUser | async)?.username
       }}</span> -->
-      <ng-template #notLoggedIn>
+<!-- <ng-template #notLoggedIn>
         <span routerLink="/auth/authorization">Login / Register</span>
       </ng-template>
     </div>
   </div>
   <div class="router">
     <router-outlet></router-outlet>
-  </div>
-  
+  </div> -->
+<ul>
+  <li>
+    <a class="active" routerLink="/">Home</a>
+  </li>
+  <li><a routerLink="/task/insert-task">Insert Task</a></li>
+  <li><a routerLink="/task/tasks-list">Tasks List</a></li>
+</ul>
+<div class="router">
+  <router-outlet></router-outlet>
+</div>
