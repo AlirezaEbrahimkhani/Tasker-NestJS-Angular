@@ -1,1 +1,191 @@
-<p>tasks-list works!</p>
+<mat-table #table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <p>{{ task.id }}</p>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <p>{{ task.title }}</p>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            [disabled]="editdisabled"
+            name="title"
+            [(ngModel)]="task.title"
+          />
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="due_date">
+    <mat-header-cell *matHeaderCellDef>Due Date</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <p>{{ task.due_date }}</p>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <input
+            [(ngModel)]="task.due_date"
+            matInput
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <p>{{ task.status }}</p>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Toppings</mat-label> -->
+          <mat-select [formControl]="toppings" multiple>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+              topping
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="priority">
+    <mat-header-cell *matHeaderCellDef>Priority</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <p>{{ task.priority }}</p>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Toppings</mat-label> -->
+          <mat-select [formControl]="toppings" multiple>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+              topping
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="entity">
+    <mat-header-cell *matHeaderCellDef>Entity</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <p>{{ task.entity }}</p>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Toppings</mat-label> -->
+          <mat-select [formControl]="toppings" multiple>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+              topping
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="assignees">
+    <mat-header-cell *matHeaderCellDef>Assignees</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <p>{{ task.assignees }}</p>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Toppings</mat-label> -->
+          <mat-select [formControl]="toppings" multiple>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+              topping
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="desciption">
+    <mat-header-cell *matHeaderCellDef>Desciption</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <mat-icon color="primary" [matTooltip]="task.desciption">info</mat-icon>
+      </ng-container>
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <mat-form-field appearance="outline">
+          <textarea
+            matInput
+            [disabled]="editdisabled"
+            name="desciption"
+            [(ngModel)]="task.desciption"
+          ></textarea>
+        </mat-form-field>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <!-- ACTION -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+    <mat-cell *matCellDef="let task">
+      <ng-container *ngIf="!editUsr || !task.id || task.id !== editUsr.id">
+        <button
+          mat-stroked-button
+          color="accent"
+          matTooltip="edit"
+          (click)="editROw(task)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-stroked-button
+          color="warn"
+          matTooltip="edit"
+          (click)="onDelete(task)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="editUsr && task.id && task.id === editUsr.id">
+        <button
+          mat-raised-button
+          color="accent"
+          matTooltip="Update"
+          class="mr-10 mb-6"
+          [disabled]="editdisabled"
+          (click)="updateEdit(task)"
+        >
+          Update
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          matTooltip="Cancel"
+          [disabled]="editdisabled"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    *matHeaderRowDef="displayedColumns; sticky: true"
+  ></mat-header-row>
+
+  <mat-row *matRowDef="let student; columns: displayedColumns"></mat-row>
+</mat-table>
