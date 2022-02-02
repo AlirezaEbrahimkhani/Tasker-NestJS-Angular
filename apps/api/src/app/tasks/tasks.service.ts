@@ -8,4 +8,8 @@ export class TasksService {
   async getTasks() {
     return (await this._tasksRepository.getTasks()).rows[0].task_list;
   }
+
+  async deleteTask(taskId) {
+    return this._tasksRepository.deleteTask(taskId);
+  }
 }
