@@ -9,7 +9,7 @@ export class PostgresService {
 
   async executeQuery(
     queryText: string,
-    values: any[] = []
+    values?: any
   ): Promise<QueryResult<any>> {
     this._logger.debug(`Executing query: ${queryText} (${values})`);
     return this._pool.query(queryText, values);

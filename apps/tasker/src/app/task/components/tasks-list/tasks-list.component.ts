@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TaskService } from '../../shared/task.service';
 
 const USER_INFO = [
   {
-    id : 22,
+    id: 22,
     title: 'John',
     status: 1,
     due_date: '2022-01-30',
@@ -13,14 +14,14 @@ const USER_INFO = [
     desciption: 'hey you',
   },
   {
-    id : 25,
+    id: 25,
     title: 'Muhi',
     status: 3,
     due_date: '2032-05-30',
     priority: 222,
     entity: 3,
     assignees: 4,
-    desciption: 'don\'t give up',
+    desciption: "don't give up",
   },
 ];
 
@@ -50,21 +51,21 @@ export class TasksListComponent implements OnInit {
     'status',
     'priority',
     'entity',
-    'assignees',
     'desciption',
     'action',
   ];
 
-  constructor() {}
+  constructor(public taskService: TaskService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.taskService.getTasks();
+  }
 
   editROw(st: any) {
     this.editdisabled = false;
     this.editUsr = st && st.id ? st : {};
     this.oldUsr = { ...this.editUsr };
     console.log(this.oldUsr);
-    
   }
 
   updateEdit(student) {
@@ -81,9 +82,12 @@ export class TasksListComponent implements OnInit {
     //   classID: student.classcid,
     // };
   }
+
   cancelEdit() {
     this.editUsr = null;
   }
 
-  onDelete(item) {}
+  onDelete({ JobID }) {
+    this.taskService.deleteTask(JobID);
+  }
 }
