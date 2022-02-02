@@ -23,4 +23,10 @@ export class TaskService {
       this.getTasks();
     });
   }
+
+  insertTask(task) {
+    this._apiBuilderService.post$('tasks', task).subscribe((resp) => {
+      // this.getTasks();
+    });
+  }
 }

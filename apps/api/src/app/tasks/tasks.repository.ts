@@ -15,4 +15,13 @@ export class TasksRepository {
       `select public.task_delete(${taskId})`
     );
   }
+
+  async insertTask(task) {
+    return await this._postgresService.executeQuery(`select public.task_insert('${
+      task.title
+    }', 1001, 
+      ${task.entities}, ${task.statuses}, ${task.priorities}, '${
+      task.desciption
+    }', '${String(task.due_date).substring(0, 10)}')`);
+  }
 }

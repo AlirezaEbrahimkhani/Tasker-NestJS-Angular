@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { TaskService } from '../../shared/task.service';
 
 interface DataModel {
   label: string;
@@ -17,12 +17,12 @@ export class InsertTaskComponent implements OnInit {
 
   statuses = new FormControl();
   statusList: DataModel[] = [
-    { label: 'received', code: 1 },
-    { label: 'Waiting', code: 2 },
-    { label: 'In Process', code: 3 },
-    { label: 'Ready', code: 4 },
-    { label: 'Finished', code: 5 },
-    { label: 'Suspended', code: 6 },
+    { label: 'received', code: 10 },
+    { label: 'Waiting', code: 20 },
+    { label: 'In Process', code: 30 },
+    { label: 'Ready', code: 40 },
+    { label: 'Finished', code: 50 },
+    { label: 'Suspended', code: 60 },
   ];
   priorities = new FormControl();
   priorityList: DataModel[] = [
@@ -32,9 +32,9 @@ export class InsertTaskComponent implements OnInit {
   ];
   entities = new FormControl();
   entityList: DataModel[] = [
-    { label: 'Ticket', code: 1 },
-    { label: 'Task', code: 2 },
-    { label: 'Meeting', code: 3 },
+    { label: 'جسابداری', code: 101 },
+    { label: 'انبار', code: 102 },
+    { label: 'store', code: 103 },
   ];
   assignees = new FormControl();
   assigneesList: DataModel[] = [
@@ -54,30 +54,23 @@ export class InsertTaskComponent implements OnInit {
   ];
 
   form = this.fb.group({
-    title: '',
-    due_date: '',
-    statuses: '',
-    priorities: '',
-    entities: '',
-    assignees: '',
-    desciption: '',
+    title: [null],
+    due_date: [null],
+    statuses: [null],
+    priorities: [null],
+    entities: [null],
+    assignees: [null],
+    desciption: [null],
   });
 
   constructor(
     private readonly fb: FormBuilder,
-    // public st: StudentService,
-    private router: Router
+    private readonly _taskService: TaskService
   ) {}
-  ngOnInit(): void {
-    // this.st.getGradelevel();
-  }
+  ngOnInit(): void {}
 
   onInsert() {
-    // this.st.student_insert(this.form.value).subscribe((res) => {
-    //   if (res.Success) {
-    //     this.router.navigate(['/student/student-list']);
-    //   }
-    // });
-    this.router.navigate(['/task/tasks-list']);
+    this._taskService.insertTask(this.form.value);
+    // this.router.navigate(['/task/tasks-list']);
   }
 }

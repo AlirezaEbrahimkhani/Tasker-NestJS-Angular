@@ -12,4 +12,8 @@ export class TasksService {
   async deleteTask(taskId) {
     return this._tasksRepository.deleteTask(taskId);
   }
+
+  async insertTask(task) {
+    return this._tasksRepository.insertTask(task);
+  }
 }
