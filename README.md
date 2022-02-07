@@ -1,6 +1,6 @@
 
 
-# Tasker
+# Tasker SE Final project V1
 
 This project was generated using [Nx](https://nx.dev).
 
